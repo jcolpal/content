@@ -35,6 +35,9 @@ export default defineNuxtConfig({
     highlight: {
       theme: 'one-dark-pro',
       preload: ['json', 'js', 'ts', 'html', 'css', 'vue']
+    },
+    parseEndpoint: {
+      token: 'secret-token'
     }
   }
 })

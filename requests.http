@@ -1,0 +1,11 @@
+###
+
+POST http://localhost:3000/api/_content/parse
+content-type: application/json
+
+{
+  "content": "---\nfoo: bar\n---# header\n## subheader\n\nParagraph",
+  "token": "secret-token"
+}
+
+###

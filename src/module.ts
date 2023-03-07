@@ -135,6 +135,12 @@ export interface ModuleOptions {
     preload?: ShikiLang[]
   },
   /**
+   * Expose parse endpoint
+   */
+  parseEndpoint: false | {
+    token: string
+  }
+  /**
    * Options for yaml parser.
    *
    * @default {}
@@ -422,6 +428,18 @@ export default defineNuxtModule<ModuleOptions>({
           method: 'post',
           route: `/api/${options.base}/highlight`,
           handler: resolveRuntimeModule('./server/api/highlight')
+        })
+      })
+    }
+
+    // Register parse endpoint
+    if (options.parseEndpoint) {
+      nuxt.hook('nitro:config', (nitroConfig) => {
+        nitroConfig.handlers = nitroConfig.handlers || []
+        nitroConfig.handlers.push({
+          method: 'post',
+          route: `/api/${options.base}/parse`,
+          handler: resolveRuntimeModule('./server/api/parse')
         })
       })
     }
